@@ -26,7 +26,7 @@ export default function App() {
     return Promise.all([...images, ...fonts]);
   }
   const onFinish = () => setIsReady(true);
-  return isReady ? <Text>Starting now!</Text>:(
+  return isReady ? <Text>Caching imgs, fonts</Text>:(
   <AppLoading
     startAsync={loadAssets}
     onFinish={onFinish}

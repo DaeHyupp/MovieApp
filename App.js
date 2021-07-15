@@ -1,21 +1,32 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {useState} from 'react';
+import { StyleSheet, Text, View, Image } from 'react-native';
+import  AppLoading  from "expo-app-loading";
+import { Asset } from 'expo-asset';
+
+
+const cacheImages = (images) => images.map(image =>{
+  if(typeof image === "string"){                         //사진이 url 형태라면
+    return Image.prefetch(image)                         //url에 가서 사진 다운로드
+  } else{
+    return Asset.fromModule(image).downloadAsync();
+  }
+})
+
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+  const [isReady, setIsReady] = useState(false);
+  const loadAssets = async ()=>{
+    const images = cacheImages(["https://images.unsplash.com/photo-1626275417707-3eedfb40d925?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80",
+      require("./assets/splash.png")]);
+    console.log(images);
+  }
+  const onFinish = () => setIsReady(true);
+  return isReady ? <Text>Ready!</Text>:(
+  <AppLoading
+    startAsync={loadAssets}
+    onFinish={onFinish}
+    onError={console.error}
+    />);
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

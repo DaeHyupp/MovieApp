@@ -1,10 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
+import 'react-native-gesture-handler';
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, StatusBar } from 'react-native';
 import * as Font from "expo-font";
 import  AppLoading  from "expo-app-loading";
 import { Asset } from 'expo-asset';
 import { Ionicons } from '@expo/vector-icons';
+import { NavigationContainer } from '@react-navigation/native';
+import Stack from './navigation/Stack';
 
 
 const cacheImages = (images) => images.map(image =>{
@@ -26,11 +28,19 @@ export default function App() {
     return Promise.all([...images, ...fonts]);
   }
   const onFinish = () => setIsReady(true);
-  return isReady ? <Text>Caching imgs, fonts</Text>:(
-  <AppLoading
-    startAsync={loadAssets}
-    onFinish={onFinish}
-    onError={console.error}
-    />);
+  return isReady ? (
+    <>
+    <NavigationContainer>
+      <Stack/>
+    </NavigationContainer>
+    <StatusBar barStyle="light-content"/>
+    </>
+    ):(
+    <AppLoading
+      startAsync={loadAssets}
+      onFinish={onFinish}
+      onError={console.error}
+    />
+  );
 }
 

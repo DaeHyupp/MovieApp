@@ -25,12 +25,12 @@ export default ({ navigation, route }) => {
       let checkOS = Platform.OS === "ios" ? "ios-" : "md-";
       let iconName;
       if(route.name==="Movies"){
-        iconName = checkOS + "film"   
+        iconName = checkOS + "film" 
       }else if(route.name==="TV"){
         iconName = checkOS + "tv"
       }else if(route.name==="Search"){
         iconName = checkOS + "search"
-      }else if(route.name==="Favorites"){
+      }else if(route.name==="Discovery"){
         iconName = checkOS + "heart"
       }
       return <Ionicons name={iconName} color={focused ? "white":"grey"} size={30}/>;
@@ -46,7 +46,7 @@ export default ({ navigation, route }) => {
     <Tabs.Screen name="Movies" component={Movies} />
     <Tabs.Screen name="TV" component={Tv} />
     <Tabs.Screen name="Search" component={Search} />
-    <Tabs.Screen name="Favorites" component={Favs} />
+    <Tabs.Screen name="Discovery" component={Favs} />
   </Tabs.Navigator>
   );
 };

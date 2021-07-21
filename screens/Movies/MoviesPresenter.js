@@ -16,12 +16,11 @@ const UpComingContainer = styled.View``;
 // need to place logo APPLE-like ratio
 const LoadingHeader = styled.View`
   background-color: black;
-  top: 160px;
 `;
 
 const SliderContainer = styled.View`
-  width: 100%;
-  height: 35%;
+  width: ${WIDTH};
+  height: ${HEIGHT / 3.5};
   background-color: black;
   margin-bottom: 50px;
 `;
@@ -30,7 +29,7 @@ export default ({ loading, nowPlaying, popular, upcoming }) => (
   <ScrollView
     style={{ backgroundColor: "black" }}
     contentContainerStyle={{
-      flex: 1,
+      flex: loading ? 1 : 0,
       justifyContent: loading ? "center" : "flex-start",
     }}
   >

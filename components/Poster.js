@@ -1,5 +1,4 @@
 import React from "react";
-import propTypes from "prop-types";
 import styled from "styled-components/native";
 import { apiImage } from "../api";
 
@@ -12,7 +11,4 @@ const Poster = ({ url }) => (
   <Image resizeMode="cover" source={{ uri: apiImage(url) }} />
 );
 
-Poster.propTypes = {
-  url: propTypes.string.isRequired,
-};
 export default Poster;

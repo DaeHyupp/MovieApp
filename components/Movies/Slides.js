@@ -5,6 +5,7 @@ import { Dimensions, TouchableOpacity } from "react-native";
 import { apiImage, movieApi } from "../../api";
 import Poster from "../Poster";
 import Votes from "../Votes";
+import { trimText } from "../../utils";
 
 const { width: WIDTH, height: HEIGHT } = Dimensions.get("window");
 
@@ -60,13 +61,13 @@ const Slide = ({ id, title, backgroundImage, votes, overview, poster }) => (
   <ContainSlide>
     <BG resuzeMode="cover" source={{ uri: apiImage(backgroundImage) }} />
     <Content>
-      <Poster url={apiImage(poster)} />
+      <Poster url={poster} />
       <Data>
-        <Title>{title.length > 30 ? `${title.slice(0, 30)}...` : title}</Title>
+        <Title>{trimText(title, 30)}</Title>
         <VotesContainer>
           <Votes votes={votes} />
         </VotesContainer>
-        <Overview>{overview.slice(0, 110)}...</Overview>
+        <Overview>{trimText(overview, 110)}</Overview>
         <TouchableOpacity>
           <Button>
             <ButtonText>View Details</ButtonText>

@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components/native";
 import propTypes from "prop-types";
-import { apiImage } from "../api";
 import Votes from "./Votes";
 import Poster from "./Poster";
 import { TouchableOpacity } from "react-native";
+import { trimText } from "../utils";
 
 const Container = styled.View`
   align-items: center;
@@ -17,17 +17,19 @@ const Title = styled.Text`
   margin: 6px 0px 3px 0px;
 `;
 // margin up left down right(?)
-const Vertical = ({ poster, title, votes }) => (
+const Vertical = ({ id, key, poster, title, votes }) => (
   <TouchableOpacity>
     <Container>
-      <Poster url={apiImage(poster)} />
-      <Title>{title.length > 14 ? `${title.slice(0, 14)}...` : title}</Title>
+      <Poster url={poster} />
+      <Title>{trimText(title, 14)}</Title>
       <Votes votes={votes} />
     </Container>
   </TouchableOpacity>
 );
 
 Vertical.propTypes = {
+  id: propTypes.number.isRequired,
+  key: propTypes.number.isRequired,
   poster: propTypes.string.isRequired,
   title: propTypes.string.isRequired,
   votes: propTypes.number.isRequired,

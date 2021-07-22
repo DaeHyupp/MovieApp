@@ -1,41 +1,46 @@
 import axios from "axios";
 
-const TMDB_KEY = "58bcb94405f10ff3f485d7d2428399f3"
+const TMDB_KEY = "58bcb94405f10ff3f485d7d2428399f3";
 
-const makeRequest = (path, params) => axios.get(`https://api.themoviedb.org/3${path}`,{
+const makeRequest = (path, params) =>
+  axios.get(`https://api.themoviedb.org/3${path}`, {
     params: {
-        ...params,
-        api_key: TMDB_KEY
-    }});
+      ...params,
+      api_key: TMDB_KEY,
+    },
+  });
 
 const getAnything = async (path, params = {}) => {
-     try{
-         const {
-             data: {results},
-             data
-         } = await makeRequest(path, params);
-         return [results || data, null];
-     } catch(e){
-         return [null, e];
-     }
-}
+  try {
+    const {
+      data: { results },
+      data,
+    } = await makeRequest(path, params);
+    return [results || data, null];
+  } catch (e) {
+    return [null, e];
+  }
+};
 
-export const movieApi ={
-    nowPlaying: () => getAnything("/movie/now_playing"),
-    popular: () => getAnything("/movie/popular"),
-    upcoming: ()=> getAnything("/movie/upcoming", {region : "kr" }),
-    search: (word) => getAnything("/search/movie", {query: word}),
-    movie: (id) => getAnything(`/movie/${id}`),
-    discover: () => getAnything("/discover/movie")
-}
+export const movieApi = {
+  nowPlaying: () => getAnything("/movie/now_playing"),
+  popular: () => getAnything("/movie/popular"),
+  upcoming: () => getAnything("/movie/upcoming", { region: "kr" }),
+  search: (word) => getAnything("/search/movie", { query: word }),
+  movie: (id) => getAnything(`/movie/${id}`),
+  discover: () => getAnything("/discover/movie"),
+};
 
 export const tvApi = {
-    today: () => getAnything("/tv/airing_today"),
-    thisWeek : ()=> getAnything("/tv/on_the_air"),
-    topRated: () => getAnything("/tv/top_rated"),
-    popular: () => getAnything("/tv/popular"),
-    search: (word) => getAnything("/search/tv",{query: word}),
-    show: (id) => getAnything(`/tv/${id}`)
-}
+  today: () => getAnything("/tv/airing_today"),
+  thisWeek: () => getAnything("/tv/on_the_air"),
+  topRated: () => getAnything("/tv/top_rated"),
+  popular: () => getAnything("/tv/popular"),
+  search: (word) => getAnything("/search/tv", { query: word }),
+  show: (id) => getAnything(`/tv/${id}`),
+};
 
-export const apiImage = (path) => `https://image.tmdb.org/t/p/w500${path}`;
+export const apiImage = (path) =>
+  path
+    ? `https://image.tmdb.org/t/p/w500${path}`
+    : "https://github.com/DaeHyupp/MovieApp/tree/main/assets/mmmm.jpg";

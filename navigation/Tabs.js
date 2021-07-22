@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import MoviesContainer from "../screens/Movies/MoviesContainer";
 import TvContainer from "../screens/Tv/TvContainer";
-import Search from "../screens/Search";
+import SearchContainer from "../screens/Search/SearchContainer";
 import Favs from "../screens/Favs";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { Platform } from "react-native";
@@ -52,7 +52,7 @@ export default ({ navigation, route }) => {
     >
       <Tabs.Screen name="Movies" component={MoviesContainer} />
       <Tabs.Screen name="TV" component={TvContainer} />
-      <Tabs.Screen name="Search" component={Search} />
+      <Tabs.Screen name="Search" component={SearchContainer} />
       <Tabs.Screen name="Discovery" component={Favs} />
     </Tabs.Navigator>
   );

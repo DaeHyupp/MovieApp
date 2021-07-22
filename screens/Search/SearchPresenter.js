@@ -1,17 +1,18 @@
 import React from "react";
 import styled from "styled-components/native";
 import HorizontalSlider from "../../components/HorizontalSlider";
+import ScrollContainer from "../../components/ScrollContainer";
 import Input from "../../components/Search/Input";
 import Vertical from "../../components/Vertical";
-
-const Container = styled.ScrollView`
-  background-color: black;
-`;
 
 const Text = styled.Text``;
 
 export default ({ movies, shows, keyword, onChange, onSubmit }) => (
-  <Container contentContainerStyle={{ paddingTop: 50 }}>
+  <ScrollContainer
+    refreshFn={onSubmit}
+    loading={false}
+    contentContainerStyle={{ paddingTop: 50 }}
+  >
     <Input
       placeholder={"Write a keyword"}
       value={keyword}
@@ -44,5 +45,5 @@ export default ({ movies, shows, keyword, onChange, onSubmit }) => (
         ))}
       </HorizontalSlider>
     )}
-  </Container>
+  </ScrollContainer>
 );

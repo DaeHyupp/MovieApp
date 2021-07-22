@@ -43,4 +43,4 @@ export const tvApi = {
 export const apiImage = (path) =>
   path
     ? `https://image.tmdb.org/t/p/w500${path}`
-    : "https://github.com/DaeHyupp/MovieApp/tree/main/assets/mmmm.jpg";
+    : "https://raw.githubusercontent.com/DaeHyupp/MovieApp/main/assets/mmmm.jpg";

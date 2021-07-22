@@ -33,5 +33,6 @@ export default () => {
   useEffect(() => {
     getData();
   }, []);
-  return <MoviesPresenter {...movies} />; // sending all states (useState) movies
+
+  return <MoviesPresenter refreshFn={getData} {...movies} />; // sending all states (useState) movies
 };

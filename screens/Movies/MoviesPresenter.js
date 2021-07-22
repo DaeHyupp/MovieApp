@@ -26,8 +26,8 @@ const SliderContainer = styled.View`
   margin-bottom: 50px;
 `;
 //controlsEnabled will make buttons, loop and timeout wont be used in next proj
-export default ({ loading, nowPlaying, popular, upcoming }) => (
-  <ScrollContainer loading={loading}>
+export default ({ refreshFn, loading, nowPlaying, popular, upcoming }) => (
+  <ScrollContainer refreshFn={refreshFn} loading={loading}>
     <>
       <SliderContainer>
         <Swiper controlsEnabled={false} loop timeout={3.5}>
